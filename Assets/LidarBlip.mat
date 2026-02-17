@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Test
+  m_Name: LidarBlip
   m_Shader: {fileID: -6465566751694194690, guid: 079906e607d38374abacf1a8755f5569, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
