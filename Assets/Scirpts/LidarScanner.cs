@@ -8,6 +8,7 @@ public class LidarScanner : MonoBehaviour
     [SerializeField] private float _angleFudging = 1;
     [SerializeField] private LayerMask _scanLayer;
     [SerializeField] private int _horizontalSweeps = 50, _verticalSweeps = 50;
+    [SerializeField] private int _maxPoints = 1000000;
     private List<Vector3> _points = new List<Vector3>();
     public List<Vector3> Points => _points;
     [ContextMenu("Scan")]
@@ -25,6 +26,11 @@ public class LidarScanner : MonoBehaviour
                     _points.Add(hitInfo.point);
                 }
             }
+        }
+
+        if(Points.Count > _maxPoints)
+        {
+            Points.RemoveRange(0, Points.Count - _maxPoints);
         }
     }
 

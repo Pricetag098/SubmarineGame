@@ -1,15 +1,18 @@
 using UnityEngine;
-using UnityEngine.UI;
+//using UnityEngine.UI;
 
 public class ThermalRenderer : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
     [SerializeField] private ComputeShader _shader;
     [SerializeField] private RenderTexture _camTargetTexture, _displayTarget;
-    [SerializeField] private RawImage _displayObject;
+    //[SerializeField] private RawImage _displayObject;
     [SerializeField] private int _displayHeight = 2048, _displayWidth = 2048;
     [SerializeField] private float _multipler = 1;
     [SerializeField] private float _captureTime;
+
+    public RenderTexture Texture => _displayTarget;
+
     private bool _capturing = false;
     private float _captureStartTime;
 
@@ -21,7 +24,7 @@ public class ThermalRenderer : MonoBehaviour
         _displayTarget = new(_displayHeight, _displayWidth, 16);
         _displayTarget.enableRandomWrite = true;
         _camera.targetTexture = _camTargetTexture;
-        _displayObject.texture = _displayTarget;
+        //_displayObject.texture = _displayTarget;
         StartCapture();
     }
 
