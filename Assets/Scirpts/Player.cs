@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     [SerializeField] private InputActionReference moveInput, camInput;
     [SerializeField] private Transform _orient;
     [SerializeField] private Vector2 _moveSpeed;
+    [SerializeField] private float _sensitivity = .5f;
     [SerializeField] private float _height;
     [SerializeField] private float _spring, _damper;
     [SerializeField] private ConfigurableJoint _joint;
@@ -29,8 +30,8 @@ public class Player : MonoBehaviour
     private void Update()
     {
         var lookDir = camInput.action.ReadValue<Vector2>();
-        _lookup = Mathf.Clamp(_lookup - lookDir.y, -90, 90);
-        _lookAround += lookDir.x;
+        _lookup = Mathf.Clamp(_lookup - lookDir.y * _sensitivity, -90, 90);
+        _lookAround += lookDir.x * _sensitivity;
         _orient.transform.localEulerAngles = Vector3.right * _lookup + Vector3.up * _lookAround;
     }
 
