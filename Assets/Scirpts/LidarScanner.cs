@@ -16,10 +16,10 @@ public class LidarScanner : MonoBehaviour
     {
         for(int x = 0; x < _horizontalSweeps; x++)
         {
-            var horizontalAngle = Mathf.LerpAngle(-_sweepAngle / 2, _sweepAngle / 2, (float)x / _horizontalSweeps) ;
+            var horizontalAngle = Mathf.Lerp(-_sweepAngle / 2, _sweepAngle / 2, (float)x / _horizontalSweeps);
             for(int y = 0; y < _horizontalSweeps; y++)
             {
-                var verticalAngle = Mathf.LerpAngle(-_sweepAngle / 2, _sweepAngle / 2, (float)y / _verticalSweeps);
+                var verticalAngle = Mathf.Lerp(-_sweepAngle / 2, _sweepAngle / 2, (float)y / _verticalSweeps);
                 var sweepDir = transform.rotation * Quaternion.Euler(verticalAngle + Random.Range(-1f, 1f) * _angleFudging, horizontalAngle + Random.Range(-1f, 1f) * _angleFudging, 0) * Vector3.forward;
                 if(Physics.Raycast(transform.position, sweepDir, out var hitInfo, _scanRange, _scanLayer))
                 {
@@ -33,13 +33,41 @@ public class LidarScanner : MonoBehaviour
             Points.RemoveRange(0, Points.Count - _maxPoints);
         }
     }
-
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        foreach(var point in _points)
         {
-            Gizmos.DrawSphere(point, .02f);
+            var horizontalAngle = Mathf.Lerp(-_sweepAngle / 2, _sweepAngle / 2, 0);
+            var verticalAngle = Mathf.Lerp(-_sweepAngle / 2, _sweepAngle / 2, 0);
+            var sweepDir = transform.rotation * Quaternion.Euler(verticalAngle, horizontalAngle, 0) * Vector3.forward;
+            Gizmos.DrawRay(transform.position, sweepDir * _scanRange);
         }
+        {
+            var horizontalAngle = Mathf.Lerp(-_sweepAngle / 2, _sweepAngle / 2, 1);
+            var verticalAngle = Mathf.Lerp(-_sweepAngle / 2, _sweepAngle / 2, 0);
+            var sweepDir = transform.rotation * Quaternion.Euler(verticalAngle, horizontalAngle, 0) * Vector3.forward;
+            Gizmos.DrawRay(transform.position, sweepDir * _scanRange);
+        }
+        {
+            var horizontalAngle = Mathf.Lerp(-_sweepAngle / 2, _sweepAngle / 2, 1);
+            var verticalAngle = Mathf.Lerp(-_sweepAngle / 2, _sweepAngle / 2, 1);
+            var sweepDir = transform.rotation * Quaternion.Euler(verticalAngle, horizontalAngle, 0) * Vector3.forward;
+            Gizmos.DrawRay(transform.position, sweepDir * _scanRange);
+        }
+        {
+            var horizontalAngle = Mathf.Lerp(-_sweepAngle / 2, _sweepAngle / 2, 0);
+            var verticalAngle = Mathf.Lerp(-_sweepAngle / 2, _sweepAngle / 2, 1);
+            var sweepDir = transform.rotation * Quaternion.Euler(verticalAngle, horizontalAngle, 0) * Vector3.forward;
+            Gizmos.DrawRay(transform.position, sweepDir * _scanRange);
+        }
+
     }
+    //private void OnDrawGizmosSelected()
+    //{
+    //    Gizmos.color = Color.green;
+    //    foreach(var point in _points)
+    //    {
+    //        Gizmos.DrawSphere(point, .02f);
+    //    }
+    //}
 }
