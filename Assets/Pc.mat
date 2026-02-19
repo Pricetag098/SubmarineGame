@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Submarine
+  m_Name: Pc
   m_Shader: {fileID: -6465566751694194690, guid: fe46516a594d1724580fd7a0d977c2cd, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -55,13 +55,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BaseTiling: 0.21
+    - _BaseTiling: 0.7
     - _DetailTiling: 0.08
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Step: 0.94
+    - _Step: 1
     m_Colors:
-    - _Color: {r: 0.39649343, g: 0.509434, b: 0.50369126, a: 1}
-    - _DetailColor: {r: 0.764151, g: 0.5928721, b: 0.4289338, a: 1}
+    - _Color: {r: 1, g: 0.8881757, b: 0.6367924, a: 1}
+    - _DetailColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

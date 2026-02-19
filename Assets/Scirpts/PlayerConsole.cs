@@ -11,11 +11,14 @@ public class PlayerConsole : MonoBehaviour
             _submarine = value;
             lidarDisplay.lidarScanner = submarine.scanner;
             lidarDisplay.sourcePosition = submarine.transform;
+            thermalDisplay.camera = submarine.thermalCamera;
+            thermalDisplay.Setup();
         }
     }
     private Submarine _submarine;
 
     [SerializeField] private LidarDisplay lidarDisplay;
+    [SerializeField] private ThermalDisplay thermalDisplay;
 
     private void Start()
     {
