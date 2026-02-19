@@ -3,6 +3,7 @@ using UnityEngine;
 public class Submarine : MonoBehaviour
 {
     public LidarScanner scanner;
+    public ThermalRenderer thermalCamera;
     [Range(-1,1)]public float thrustControl, bouyancyControl, turnControl;
     [SerializeField] private ConfigurableJoint joint;
 

@@ -17,7 +17,7 @@ public class ThermalRenderer : MonoBehaviour
     private float _captureStartTime;
 
 
-    void Start()
+    void Awake()
     {
         _camTargetTexture = new(_displayHeight, _displayWidth, 16);
         _camTargetTexture.enableRandomWrite = true;
@@ -25,6 +25,11 @@ public class ThermalRenderer : MonoBehaviour
         _displayTarget.enableRandomWrite = true;
         _camera.targetTexture = _camTargetTexture;
         //_displayObject.texture = _displayTarget;
+        
+    }
+
+    private void Start()
+    {
         StartCapture();
     }
 
