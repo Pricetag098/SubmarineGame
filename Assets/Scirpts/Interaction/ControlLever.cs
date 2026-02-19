@@ -2,19 +2,30 @@ using UnityEngine;
 
 public class ControlLever : MonoBehaviour, IInteractable
 {
-    public float moveDistance;
+
+    public enum ControlType { Thrust, Bouyancy, Rudder}
+
+    public float controlPercentage;
+
+    [SerializeField] ControlType controlType;
+
+    [SerializeField] PlayerConsole console;
+
     [SerializeField] float moveRailLength;
     [SerializeField] float zeroingThreshold;
     [SerializeField] float zeroingSpeed;
 
-    Interactor currentInteractor;
-    [SerializeField] bool active;
-    float yInitial;
+    [SerializeField] Transform wheel;
+
+    
+    bool active;
     Vector3 tInitial;
+    float moveDistance;
+
+    Interactor currentInteractor;
 
     private void Start()
     {
-        yInitial = transform.position.y;
         tInitial = transform.position;
     }
 
@@ -51,6 +62,20 @@ public class ControlLever : MonoBehaviour, IInteractable
 
     private void Update()
     {
+        controlPercentage = moveDistance / moveRailLength;
+
+        switch (controlType)
+        {
+            case ControlType.Thrust:
+                console.submarine.thrustControl = controlPercentage;
+                break;
+            case ControlType.Bouyancy:
+                console.submarine.bouyancyControl = controlPercentage;
+                break;
+            case ControlType.Rudder:
+                console.submarine.turnControl = controlPercentage;
+                break;
+        }
 
         //stupid transform maths for stupid problems
 
@@ -68,6 +93,8 @@ public class ControlLever : MonoBehaviour, IInteractable
             Vector3 newLocal = new Vector3(localOrigin.x + moveDistance, 0f, 0f);
             transform.position = transform.TransformPoint(newLocal);
 
+            wheel.eulerAngles = new Vector3 (-90f, (moveDistance/moveRailLength) * 1080, 0f);
+
         }
         else
         {
@@ -83,21 +110,6 @@ public class ControlLever : MonoBehaviour, IInteractable
             Vector3 newLocal = new Vector3(localOrigin.x + moveDistance, 0f, 0f);
             transform.position = transform.TransformPoint(newLocal);
         }
-
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(tInitial, tInitial + (transform.right * moveRailLength));
-        Gizmos.DrawLine(tInitial, tInitial + (transform.right * -moveRailLength));
-
-        //if (active)
-        //{
-        //    Gizmos.color = Color.cyan;
-        //    Vector3 projection = Vector3.Project(currentInteractor.GetLookDirection(), transform.right);
-        //    Gizmos.DrawLine(tInitial, tInitial + projection);
-        //}
 
     }
 
