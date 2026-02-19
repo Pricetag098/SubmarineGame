@@ -73,8 +73,8 @@ MonoBehaviour:
   _displayTarget: {fileID: 0}
   _displayHeight: 2048
   _displayWidth: 2048
-  _multipler: 1
-  _captureTime: 3
+  _multipler: 2.5
+  _captureTime: 10
 --- !u!1 &4798023485776106145
 GameObject:
   m_ObjectHideFlags: 0

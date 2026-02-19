@@ -59,9 +59,10 @@ Material:
     - _DetailTiling: 0.08
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Step: 0.94
+    - _Step: 0.85
+    - _Step_1: 0.9
     m_Colors:
-    - _Color: {r: 0.39649343, g: 0.509434, b: 0.50369126, a: 1}
-    - _DetailColor: {r: 0.764151, g: 0.5928721, b: 0.4289338, a: 1}
+    - _Color: {r: 0.5683072, g: 0.90758836, b: 0.9339623, a: 1}
+    - _DetailColor: {r: 0.764151, g: 0.5928721, b: 0.42893374, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
