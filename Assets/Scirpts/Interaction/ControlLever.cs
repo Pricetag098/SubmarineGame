@@ -3,6 +3,8 @@ using UnityEngine;
 public class ControlLever : MonoBehaviour, IInteractable
 {
 
+    public System.Action<float> onValueChanged;
+
     public enum ControlType { Thrust, Bouyancy, Rudder}
 
     public GameObject GameObject => gameObject;
@@ -80,6 +82,7 @@ public class ControlLever : MonoBehaviour, IInteractable
     private void Update()
     {
         controlPercentage = moveDistance / moveRailLength;
+        onValueChanged?.Invoke(controlPercentage);
 
         switch (controlType)
         {
