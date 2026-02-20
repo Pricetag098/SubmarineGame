@@ -4,30 +4,28 @@ using UnityEngine.InputSystem;
 
 public class Interactor : MonoBehaviour
 {
+    public System.Action<IInteractable> onChangedFocus;
+
+    [SerializeField] InteractionDisplay display;
     [SerializeField] float interactionRange;
     [SerializeField] Transform playerHead;
     [SerializeField] LayerMask interactionLayer;
     [SerializeField] InputActionReference interactInput;
 
-    bool focusLocked;
-    IInteractable currentFocus;
-    public void SetFocusLock(bool isLocked)
-    {
-        focusLocked = isLocked;
-    }
 
+    IInteractable currentFocus;
     public Vector3 GetHead()
     {
         return playerHead.position;
     }
-    public Vector3 GetLookDirection()
-    {
-        return playerHead.forward;
-    }
-
     public Vector3 GetLookPoint(float distance)
     {
         return playerHead.position + (playerHead.forward * distance);
+    }
+
+    private void Start()
+    {
+        display.Initialise(this);
     }
 
     private void OnEnable()
@@ -38,39 +36,45 @@ public class Interactor : MonoBehaviour
     private void Update()
     {
         //get input
-        if (interactInput.action.WasPressedThisFrame() && currentFocus != null)
+        if (currentFocus != null)
         {
-            currentFocus.Interact(this);
-            return;
+            if (Vector3.Distance(playerHead.position, currentFocus.GameObject.transform.position) > interactionRange)
+                SetFocus(null);
+
+            if (interactInput.action.WasPressedThisFrame())
+            {
+                currentFocus.Interact(this);
+                return;
+            }
         }
 
-        if (focusLocked)
-            return;
 
         if (Physics.Raycast(playerHead.position, playerHead.forward, out RaycastHit hit, interactionRange, interactionLayer))
         {
             if (hit.collider.TryGetComponent<IInteractable>(out IInteractable interactable))
             {
 
-                SetFocus(interactable);
+                if (currentFocus == null)
+
+                    SetFocus(interactable);
+
+                else if(currentFocus.RequestDefocus(this, interactable))
+
+                    SetFocus(interactable);
 
             }
 
-            else
+            else if (currentFocus.RequestDefocus(this, null))
                 SetFocus(null);
         }
 
-        else
+        else if (currentFocus.RequestDefocus(this, null))
             SetFocus(null);
 
 
        
     }
 
-    void DoInteract(IInteractable interactable)
-    {
-
-    }
     void SetFocus(IInteractable interactable)
     {
         if (currentFocus == interactable)
@@ -83,6 +87,8 @@ public class Interactor : MonoBehaviour
 
         if (currentFocus != null)
             currentFocus.Focus(this);
+
+        onChangedFocus?.Invoke(currentFocus);
     }
 
 }

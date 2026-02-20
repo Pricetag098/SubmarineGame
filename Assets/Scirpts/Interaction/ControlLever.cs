@@ -5,17 +5,23 @@ public class ControlLever : MonoBehaviour, IInteractable
 
     public enum ControlType { Thrust, Bouyancy, Rudder}
 
+    public GameObject GameObject => gameObject;
+
     public float controlPercentage;
 
     [SerializeField] ControlType controlType;
 
     [SerializeField] PlayerConsole console;
 
+    [SerializeField] string displayName;
+
     [SerializeField] float moveRailLength;
     [SerializeField] float zeroingThreshold;
     [SerializeField] float zeroingSpeed;
 
     [SerializeField] Transform wheel;
+
+    [SerializeField] bool objectMoves = true;
 
     
     bool active;
@@ -27,6 +33,11 @@ public class ControlLever : MonoBehaviour, IInteractable
     private void Start()
     {
         tInitial = transform.position;
+    }
+
+    public string GetInteractionText()
+    {
+        return displayName;
     }
 
     public void Focus(Interactor interactor)
@@ -41,13 +52,20 @@ public class ControlLever : MonoBehaviour, IInteractable
 
     }
 
+    public bool RequestDefocus(Interactor interactor, IInteractable newTarget)
+    {
+        if(newTarget != null)
+            return true;
+
+        else return !active;
+    }
+
     public void Interact(Interactor interactor)
     {
         if (!active)
         {
             currentInteractor = interactor;
             active = true;
-            interactor.SetFocusLock(true);
         }
 
         else
@@ -57,7 +75,6 @@ public class ControlLever : MonoBehaviour, IInteractable
     void Cancel(Interactor interactor)
     {
         active = false;
-        interactor.SetFocusLock(false);
     }
 
     private void Update()
@@ -91,7 +108,9 @@ public class ControlLever : MonoBehaviour, IInteractable
             moveDistance = Mathf.Clamp(deltaX, -moveRailLength, moveRailLength);
 
             Vector3 newLocal = new Vector3(localOrigin.x + moveDistance, 0f, 0f);
-            transform.position = transform.TransformPoint(newLocal);
+
+            if(objectMoves)
+                transform.position = transform.TransformPoint(newLocal);
 
             wheel.eulerAngles = new Vector3 (-90f, (moveDistance/moveRailLength) * 1080, 0f);
 
@@ -101,6 +120,7 @@ public class ControlLever : MonoBehaviour, IInteractable
 
             if (Mathf.Abs(moveDistance) < 0.01)
                 moveDistance = 0f;
+
             else if (Mathf.Abs(moveDistance) < zeroingThreshold)
             {
                 moveDistance -= zeroingSpeed * Mathf.Sign(moveDistance) * Time.deltaTime;
@@ -108,7 +128,9 @@ public class ControlLever : MonoBehaviour, IInteractable
 
             Vector3 localOrigin = transform.InverseTransformPoint(tInitial);
             Vector3 newLocal = new Vector3(localOrigin.x + moveDistance, 0f, 0f);
-            transform.position = transform.TransformPoint(newLocal);
+
+            if (objectMoves)
+                transform.position = transform.TransformPoint(newLocal);
         }
 
     }
