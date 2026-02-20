@@ -121,10 +121,10 @@ public class ControlLever : MonoBehaviour, IInteractable
         else
         {
 
-            if (Mathf.Abs(moveDistance) < 0.01)
+            if (Mathf.Abs(controlPercentage) < 0.01)
                 moveDistance = 0f;
 
-            else if (Mathf.Abs(moveDistance) < zeroingThreshold)
+            else if (Mathf.Abs(controlPercentage) < zeroingThreshold)
             {
                 moveDistance -= zeroingSpeed * Mathf.Sign(moveDistance) * Time.deltaTime;
             }

@@ -3710,6 +3710,10 @@ PrefabInstance:
       propertyPath: displayName
       value: (E) Bouyancy Control
       objectReference: {fileID: 0}
+    - target: {fileID: 4172832745272079013, guid: ef38d2f52dec8a14482ccd04a3dea929, type: 3}
+      propertyPath: zeroingThreshold
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3949,6 +3953,10 @@ PrefabInstance:
       propertyPath: displayName
       value: (E) Thrust Control
       objectReference: {fileID: 0}
+    - target: {fileID: 5323021224870327082, guid: 28a55e0590024144e9ea835ee42833c7, type: 3}
+      propertyPath: zeroingThreshold
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4172,6 +4180,10 @@ PrefabInstance:
     - target: {fileID: 8132550013689034715, guid: cae5a8c9d24c7cf48a3d878ca1e1df96, type: 3}
       propertyPath: objectMoves
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8132550013689034715, guid: cae5a8c9d24c7cf48a3d878ca1e1df96, type: 3}
+      propertyPath: zeroingThreshold
+      value: 0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
