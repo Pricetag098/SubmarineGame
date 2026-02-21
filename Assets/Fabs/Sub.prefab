@@ -125,6 +125,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Submarine
   scanner: {fileID: 2933310007693794544}
   thermalCamera: {fileID: 6297450208609654871}
+  console: {fileID: 0}
+  collisionDamageThreshold: 1
+  damageCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 7
+      outSlope: 7
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 5
+      value: 35
+      inSlope: 7
+      outSlope: 7
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   thrustControl: 0
   bouyancyControl: 0
   turnControl: 0
@@ -272,7 +298,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5924703742085635417}
   - component: {fileID: 628172164257761616}
-  - component: {fileID: 4631601457289725560}
   - component: {fileID: 5140642213716098728}
   m_Layer: 0
   m_Name: ThermalCamera
@@ -347,14 +372,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &4631601457289725560
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8356483668326099788}
-  m_Enabled: 1
 --- !u!114 &5140642213716098728
 MonoBehaviour:
   m_ObjectHideFlags: 0

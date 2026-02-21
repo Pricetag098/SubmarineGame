@@ -4,6 +4,9 @@ public class Submarine : MonoBehaviour
 {
     public LidarScanner scanner;
     public ThermalRenderer thermalCamera;
+    public PlayerConsole console;
+    public float collisionDamageThreshold;
+    public AnimationCurve damageCurve;
     [Range(-1,1)]public float thrustControl, bouyancyControl, turnControl;
     [SerializeField] private ConfigurableJoint joint;
 
@@ -24,5 +27,13 @@ public class Submarine : MonoBehaviour
         joint.zDrive = drive;
 
         joint.slerpDrive = drive;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.relativeVelocity.magnitude < collisionDamageThreshold)
+            return;
+
+        console.DealHullDamage(damageCurve.Evaluate(collision.relativeVelocity.magnitude - collisionDamageThreshold));
     }
 }

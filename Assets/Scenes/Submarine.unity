@@ -2816,6 +2816,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerConsole
   lidarDisplay: {fileID: 553386105}
   thermalDisplay: {fileID: 188361394}
+  hullDamagePrefab: {fileID: 5532999924182040893, guid: 77fb19faec025534388226c09b378691, type: 3}
+  sparkPoints:
+  - {fileID: 1963776682}
 --- !u!4 &1703880371
 Transform:
   m_ObjectHideFlags: 0
@@ -3047,6 +3050,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 25}
   m_SizeDelta: {x: 600, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1963776681
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1963776682}
+  m_Layer: 0
+  m_Name: Test
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1963776682
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963776681}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.92387956, z: 0.38268343, w: 0}
+  m_LocalPosition: {x: 1.176, y: 0.796, z: 1.033}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: -45, y: 180, z: 0}
 --- !u!1001 &2057171973
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3564,3 +3598,4 @@ SceneRoots:
   - {fileID: 886098553}
   - {fileID: 1747197444295115696}
   - {fileID: 7575660294752214621}
+  - {fileID: 1963776682}
