@@ -56,7 +56,19 @@ public class Surveyor : MonoBehaviour
         }
 
         foreach (PointOfInterest point in pointsOfInterest)
+        {
             point.currentDistance = Vector3.Distance(submarine.transform.position, point.position);
+
+            Vector2 subPosition = new Vector2(submarine.transform.position.x, submarine.transform.position.z);
+            Vector2 pointPosition = new Vector2(point.position.x, point.position.z);
+            Vector2 directionToPoint = (pointPosition - subPosition).normalized;
+            Vector2 subHeading = new Vector2(submarine.transform.forward.x, submarine.transform.forward.z);
+
+            //heading is the angle between our forward vector and the direction to the point
+            float angle = Vector2.Angle(subHeading, directionToPoint);
+
+            point.currentHeading = angle;
+        }
 
         switch (state)
         {
@@ -83,11 +95,12 @@ public class Surveyor : MonoBehaviour
                     display.text = "SCAN ABORTED";
                     scanLoop.volume = 0f;
                     soundPlayer.Play(fail);
+                    break;
                 }
 
                 timer += Time.deltaTime;
 
-                int position = Mathf.FloorToInt(timer * 10);
+                int position = Mathf.FloorToInt(timer * 20);
                 string scanProgress = "SCANNING:\n\n";
                 for(int i = 0; i < scanString.Length; ++i)
                 {
@@ -142,7 +155,11 @@ public class Surveyor : MonoBehaviour
         for (int i = 0; i < pointsOfInterest.Count; ++i)
         {
             if (!pointsOfInterest[i].isScanned)
-                output += "SITE " + alpha[i] + ": " + pointsOfInterest[i].currentDistance.ToString("0.00") + "\n";
+            {
+                output += "SITE " + alpha[i] + ": " + pointsOfInterest[i].currentDistance.ToString("0.00") + "m";
+                output += " | " + pointsOfInterest[i].currentHeading.ToString("0") + "°";
+                output += "\n";
+            }
         }
 
         return output;
@@ -163,6 +180,7 @@ public class Surveyor : MonoBehaviour
     {
         public Vector3 position;
         public float currentDistance;
+        public float currentHeading;
         public bool isScanned;
     }
 }

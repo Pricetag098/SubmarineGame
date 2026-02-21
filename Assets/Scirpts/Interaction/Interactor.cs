@@ -39,7 +39,10 @@ public class Interactor : MonoBehaviour
         if (currentFocus != null)
         {
             if (Vector3.Distance(playerHead.position, currentFocus.GameObject.transform.position) > interactionRange)
+            {
                 SetFocus(null);
+                return;
+            }
 
             if (interactInput.action.WasPressedThisFrame())
             {

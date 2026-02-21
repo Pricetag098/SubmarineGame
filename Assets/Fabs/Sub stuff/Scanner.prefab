@@ -38,7 +38,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0.3426, y: 0}
-  m_SizeDelta: {x: 1.3148, y: 1}
+  m_SizeDelta: {x: 2.0212, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &3792448539248797315
 Canvas:
@@ -230,12 +230,15 @@ MonoBehaviour:
   pointsOfInterest:
   - position: {x: 100, y: 0, z: 0}
     currentDistance: 0
+    currentHeading: 0
     isScanned: 0
   - position: {x: 0, y: 100, z: 0}
     currentDistance: 0
+    currentHeading: 0
     isScanned: 0
   - position: {x: 0, y: 0, z: 100}
     currentDistance: 0
+    currentHeading: 0
     isScanned: 0
   display: {fileID: 7516884711504375091}
   scannerRange: 100
@@ -516,7 +519,7 @@ Transform:
   m_GameObject: {fileID: 8907615212264366911}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.169, y: -0.408, z: -0}
+  m_LocalPosition: {x: 1.477, y: -0.408, z: -0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
