@@ -91,17 +91,22 @@ public class ControlLever : MonoBehaviour, IInteractable
             previousValue = controlPercentage;
         }
 
-        switch (controlType)
+        if (console.submarine != null)
         {
-            case ControlType.Thrust:
-                console.submarine.thrustControl = controlPercentage;
-                break;
-            case ControlType.Bouyancy:
-                console.submarine.bouyancyControl = controlPercentage;
-                break;
-            case ControlType.Rudder:
-                console.submarine.turnControl = controlPercentage;
-                break;
+            switch (controlType)
+            {
+
+
+                case ControlType.Thrust:
+                    console.submarine.thrustControl = controlPercentage;
+                    break;
+                case ControlType.Bouyancy:
+                    console.submarine.bouyancyControl = controlPercentage;
+                    break;
+                case ControlType.Rudder:
+                    console.submarine.turnControl = controlPercentage;
+                    break;
+            }
         }
 
         //stupid transform maths for stupid problems

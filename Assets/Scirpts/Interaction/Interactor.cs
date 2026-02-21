@@ -64,11 +64,11 @@ public class Interactor : MonoBehaviour
 
             }
 
-            else if (currentFocus.RequestDefocus(this, null))
+            else if (currentFocus != null && currentFocus.RequestDefocus(this, null))
                 SetFocus(null);
         }
 
-        else if (currentFocus.RequestDefocus(this, null))
+        else if (currentFocus != null && currentFocus.RequestDefocus(this, null))
             SetFocus(null);
 
 

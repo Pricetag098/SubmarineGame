@@ -6,12 +6,16 @@ public class WheelNoise : MonoBehaviour
     [SerializeField] AudioSource source;
     [SerializeField] float dieOffTime;
     [SerializeField] AnimationCurve dieOffCurve;
+    [SerializeField] float requiredDelta;
 
     float timer;
+    float currentDelta;
+    float previousValue;
+
 
     private void Start()
     {
-        helm.onValueChanged += SetVolume;
+        helm.onValueChanged += WheelMoved;
     }
 
 
@@ -21,8 +25,17 @@ public class WheelNoise : MonoBehaviour
             timer -= Time.deltaTime;
         source.volume = dieOffCurve.Evaluate(timer/dieOffTime);
     }
-    void SetVolume(float _)
+    void WheelMoved(float wheelValue)
     {
-        timer = dieOffTime;
+        currentDelta += Mathf.Abs(wheelValue - previousValue);
+        previousValue = wheelValue;
+
+        if(currentDelta > requiredDelta)
+        {
+            currentDelta = 0;
+            timer = dieOffTime;
+        }
+
+  
     }
 }

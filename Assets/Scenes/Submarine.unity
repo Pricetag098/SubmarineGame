@@ -3489,6 +3489,10 @@ PrefabInstance:
       propertyPath: dieOffTime
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 8685536106880053462, guid: 225be34c68b3eba4db6dcd782af3ae95, type: 3}
+      propertyPath: requiredDelta
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8982594006106350102, guid: 225be34c68b3eba4db6dcd782af3ae95, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
