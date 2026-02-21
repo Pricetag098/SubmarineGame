@@ -12,8 +12,8 @@ public class Interactor : MonoBehaviour
     [SerializeField] LayerMask interactionLayer;
     [SerializeField] InputActionReference interactInput;
 
-
     IInteractable currentFocus;
+
     public Vector3 GetHead()
     {
         return playerHead.position;
