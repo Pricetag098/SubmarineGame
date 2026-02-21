@@ -39,6 +39,8 @@ public class GameEnder : MonoBehaviour
     [SerializeField] string scanString;
 
     [SerializeField] Image blackout;
+    [SerializeField] CameraShake cameraShake;
+    [SerializeField] Flicker alarmLight;
 
 
     float startDepth;
@@ -70,6 +72,9 @@ public class GameEnder : MonoBehaviour
 
         soundPlayer.Play(impact);
         soundPlayer.Play(nessieDriveBy);
+
+        alarmLight.Flick(.3f, 2f);
+        cameraShake.Shake(.4f, .2f,1f, true);
         stage++;
 
     }
@@ -128,6 +133,9 @@ public class GameEnder : MonoBehaviour
                     timer = 0;
                     display.fontSize = display.fontSize + .05f;
                     display.text = "PROXIMITY ALERT: COLOSSAL";
+
+                    alarmLight.Flick(.5f, 4f);
+
                     loop.clip = alarm;
                     loop.Play();
                     stage++;
@@ -153,6 +161,10 @@ public class GameEnder : MonoBehaviour
                     loop.Play();
                     soundPlayer.Play(impact);
                     soundPlayer.Play(riser);
+                    cameraShake.EndMode();
+
+                    alarmLight.Flick(.4f, 15f);
+                    cameraShake.Shake(.1f, .3f, 15f);
 
                     currentDepth = startDepth;
 
