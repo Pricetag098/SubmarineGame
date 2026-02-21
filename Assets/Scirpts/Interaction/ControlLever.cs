@@ -4,6 +4,7 @@ public class ControlLever : MonoBehaviour, IInteractable
 {
 
     public System.Action<float> onValueChanged;
+    public System.Action<bool> onInteract;
 
     public enum ControlType { Thrust, Bouyancy, Rudder}
 
@@ -25,7 +26,7 @@ public class ControlLever : MonoBehaviour, IInteractable
 
     [SerializeField] bool objectMoves = true;
 
-    
+    float previousValue;
     bool active;
     Vector3 tInitial;
     float moveDistance;
@@ -68,6 +69,7 @@ public class ControlLever : MonoBehaviour, IInteractable
         {
             currentInteractor = interactor;
             active = true;
+            onInteract?.Invoke(true);
         }
 
         else
@@ -77,12 +79,17 @@ public class ControlLever : MonoBehaviour, IInteractable
     void Cancel(Interactor interactor)
     {
         active = false;
+        onInteract?.Invoke(false);
     }
 
     private void Update()
     {
         controlPercentage = moveDistance / moveRailLength;
-        onValueChanged?.Invoke(controlPercentage);
+        if (controlPercentage != previousValue)
+        {
+            onValueChanged?.Invoke(controlPercentage);
+            previousValue = controlPercentage;
+        }
 
         switch (controlType)
         {

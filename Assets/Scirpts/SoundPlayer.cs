@@ -23,4 +23,9 @@ public class SoundPlayer : MonoBehaviour
         source.PlayOneShot(clip);
 
     }
+
+    public void SetVolume(float volume)
+    {
+        source.volume = volume;
+    }
 }
