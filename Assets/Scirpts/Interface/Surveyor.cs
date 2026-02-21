@@ -5,6 +5,7 @@ using TMPro;
 
 public class Surveyor : MonoBehaviour
 {
+    [SerializeField] float exitDepth;
     [SerializeField] List<PointOfInterest> pointsOfInterest = new List<PointOfInterest>();
     [SerializeField] TextMeshProUGUI display;
     [SerializeField] float scannerRange;
@@ -19,7 +20,8 @@ public class Surveyor : MonoBehaviour
     [SerializeField] AudioClip succeed;
     [SerializeField] AudioSource scanLoop;
 
-    enum State { Idle, Scanning, Cooldown}
+    [SerializeField] GameEnder gameEnder;
+    enum State { Awating, Idle, Scanning, Cooldown, Final}
     State state;
 
     string[] alpha = { "A", "B", "C", "D", "E", "F", "G" };
@@ -27,9 +29,22 @@ public class Surveyor : MonoBehaviour
     float timer;
     bool alertReady;
 
-    [ContextMenu("Scan")]
+    [ContextMenu("End Game")]
+    public void CheatEnding()
+    {
+        soundPlayer.Play(alert);
+        state = State.Final;
+    }
     public void StartScan()
     {
+        if(state == State.Awating)
+        {
+            soundPlayer.Play(succeed);
+            state = State.Cooldown;
+            display.text = "LOADING...";
+            return;
+        }
+
         timer = 0f;
 
         if (!InRange())
@@ -132,8 +147,22 @@ public class Surveyor : MonoBehaviour
                 if(timer >= scanCooldown)
                 {
                     timer = 0;
-                    state = State.Idle;
+                    if(!CompletedGame())
+                        state = State.Idle;
+                    else
+                    {
+                        soundPlayer.Play(alert);
+                        state = State.Final;
+                    }
                 }    
+
+                break;
+
+            case State.Final:
+
+                float distance = exitDepth - submarine.transform.position.y;
+
+                display.text = "OBJECTIVE COMPLETE\nASCEND TO EXIT\n" + distance.ToString("00.0") + "m";
 
                 break;
 
@@ -166,6 +195,14 @@ public class Surveyor : MonoBehaviour
 
     }
 
+    bool CompletedGame()
+    {
+        foreach (PointOfInterest point in pointsOfInterest)
+            if (!point.isScanned)
+                return false;
+
+        return true;
+    }
     bool InRange()
     {
         foreach (PointOfInterest point in pointsOfInterest)

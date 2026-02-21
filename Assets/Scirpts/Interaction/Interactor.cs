@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class Interactor : MonoBehaviour
 {
     public System.Action<IInteractable> onChangedFocus;
+    public InputActionReference Input => interactInput;
 
     [SerializeField] InteractionDisplay display;
     [SerializeField] float interactionRange;

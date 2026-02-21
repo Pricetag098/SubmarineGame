@@ -38,6 +38,15 @@ public class ControlLever : MonoBehaviour, IInteractable
         tInitial = transform.position;
     }
 
+    public void Disable()
+    {
+        if (currentInteractor != null)
+            Cancel(currentInteractor);
+
+        controlPercentage = 0f;
+        this.enabled = false;
+    }
+
     public string GetInteractionText()
     {
         return displayName;
@@ -57,10 +66,7 @@ public class ControlLever : MonoBehaviour, IInteractable
 
     public bool RequestDefocus(Interactor interactor, IInteractable newTarget)
     {
-        if(newTarget != null)
-            return true;
-
-        else return !active;
+        return !active;
     }
 
     public void Interact(Interactor interactor)
@@ -71,9 +77,6 @@ public class ControlLever : MonoBehaviour, IInteractable
             active = true;
             onInteract?.Invoke(true);
         }
-
-        else
-            Cancel(interactor);
     }
 
     void Cancel(Interactor interactor)
@@ -128,6 +131,9 @@ public class ControlLever : MonoBehaviour, IInteractable
                 transform.position = transform.TransformPoint(newLocal);
 
             wheel.eulerAngles = new Vector3 (-90f, (moveDistance/moveRailLength) * 1080, 0f);
+
+            if (currentInteractor.Input.action.WasReleasedThisFrame())
+                Cancel(currentInteractor);
 
         }
         else
