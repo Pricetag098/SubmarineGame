@@ -24,6 +24,12 @@ public class SoundPlayer : MonoBehaviour
 
     }
 
+    public void Play(AudioClip clip)
+    {
+        source.pitch = basePitch + Random.Range(-pitchVariance, pitchVariance);
+        source.PlayOneShot(clip);
+    }
+
     public void SetVolume(float volume)
     {
         source.volume = volume;
