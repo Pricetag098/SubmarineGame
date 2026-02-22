@@ -3,31 +3,23 @@ using UnityEngine;
 public class CameraShake : MonoBehaviour
 {
     [SerializeField] AnimationCurve motionCurve;
-    [SerializeField] AnimationCurve intensityCurve;
+    [SerializeField] AnimationCurve baseIntensityCurve;
 
     float magnitude;
     float duration;
     float frequency;
     float timer;
-    bool invertIntensity;
-    bool endMode;
+    AnimationCurve intensity;
 
-    //you f-ed this up by not subtracting during mathf repeat
-    //you can fix it if you want to do so that badly
-    public void Shake(float magnitude, float frequency, float duration, bool invertIntesity = false)
+    public void Shake(float magnitude, float frequency, float duration)
     {
         this.magnitude = magnitude;
         this.frequency = frequency;
         this.duration = duration;
-        this.invertIntensity = invertIntesity;
         timer = duration;
+        intensity = baseIntensityCurve;
     }
 
-    //it is 4.48am
-    public void EndMode()
-    {
-        endMode = true;
-    }
 
     private void Update()
     {
@@ -36,18 +28,19 @@ public class CameraShake : MonoBehaviour
 
         timer -= Time.deltaTime;
 
-        float t = invertIntensity ? timer/duration : 1 - (timer/duration);
-        t = endMode ? 1 - t : t;
+        float t = 1f - (timer/duration);
 
-        float currentIntensity = intensityCurve.Evaluate(t) * magnitude;
+        //shake gets bigger over time
+        float currentAmplitude = intensity.Evaluate(t) * magnitude;
 
+        //frequency gets smaller over time
+        float effectiveFrequency = frequency * baseIntensityCurve.Evaluate(1 - t);
 
-        float effectiveFrequency = frequency * intensityCurve.Evaluate(t);
-
-        float frequencyTimer = Mathf.Repeat(timer, effectiveFrequency);
+        float frequencyTimer = Mathf.Repeat(duration - timer, effectiveFrequency);
 
         if (effectiveFrequency > 0)
-            transform.localPosition = new Vector3(0,motionCurve.Evaluate(frequencyTimer/effectiveFrequency) * currentIntensity, 0);
+
+            transform.localPosition = new Vector3(0,motionCurve.Evaluate(frequencyTimer/effectiveFrequency) * currentAmplitude, 0);
 
         if(timer <= 0)
             transform.localPosition = Vector3.zero;

@@ -21,7 +21,7 @@ public class Surveyor : MonoBehaviour
     [SerializeField] AudioSource scanLoop;
 
     [SerializeField] GameEnder gameEnder;
-    enum State { Awating, Idle, Scanning, Cooldown, Final}
+    enum State { Awating, Load, Idle, Scanning, Cooldown, Return, Final}
     State state;
 
     string[] alpha = { "A", "B", "C", "D", "E", "F", "G" };
@@ -33,15 +33,22 @@ public class Surveyor : MonoBehaviour
     public void CheatEnding()
     {
         soundPlayer.Play(alert);
-        state = State.Final;
+        state = State.Return;
     }
     public void StartScan()
     {
+
         if(state == State.Awating)
         {
             soundPlayer.Play(succeed);
-            state = State.Cooldown;
-            display.text = "LOADING...";
+            state = State.Load;
+
+            return;
+        }
+
+        if (state != State.Idle)
+        {
+            soundPlayer.Play(fail);
             return;
         }
 
@@ -87,6 +94,24 @@ public class Surveyor : MonoBehaviour
 
         switch (state)
         {
+            case State.Load:
+
+                timer += Time.deltaTime;
+                string loadText = GetScanString(false, timer, 8) + "\n";
+                loadText += "LOADING" + "\n";
+                loadText += GetScanString(true, timer, 8);
+
+                display.text = loadText;
+
+                if(timer >= scanCooldown)
+                {
+                    timer = 0;
+                    soundPlayer.Play(alert);
+                    state = State.Idle;
+                }
+
+                break;
+
             case State.Idle:
 
                 if(!InRange())
@@ -116,11 +141,16 @@ public class Surveyor : MonoBehaviour
                 timer += Time.deltaTime;
 
                 int position = Mathf.FloorToInt(timer * 20);
-                string scanProgress = "SCANNING:\n\n";
+                string scanProgress = "";
                 for(int i = 0; i < scanString.Length; ++i)
                 {
                     scanProgress += scanString[(i + position + scanString.Length) % scanString.Length];
-                }    
+                }
+                scanProgress += "\n|SCANNING|\n";
+                for (int i = scanString.Length - 1; i >= 0; --i)
+                {
+                    scanProgress += scanString[(i + position + scanString.Length) % scanString.Length];
+                }
 
                 display.text = scanProgress;
 
@@ -131,7 +161,7 @@ public class Surveyor : MonoBehaviour
                     state = State.Cooldown;
 
                     foreach(PointOfInterest point in pointsOfInterest)
-                        if(point.currentDistance < scannerRange)
+                        if(point.IsInRange(submarine.transform.position))
                             point.isScanned = true;
 
                     display.text = "SCAN SUCCESSFUL";
@@ -152,17 +182,27 @@ public class Surveyor : MonoBehaviour
                     else
                     {
                         soundPlayer.Play(alert);
-                        state = State.Final;
+                        state = State.Return;
                     }
                 }    
 
                 break;
 
-            case State.Final:
+            case State.Return:
 
                 float distance = exitDepth - submarine.transform.position.y;
 
                 display.text = "OBJECTIVE COMPLETE\nASCEND TO EXIT\n" + distance.ToString("00.0") + "m";
+
+                if(distance < gameEnder.TriggerPoint)
+                {
+                    state = State.Final;
+                    gameEnder.BeginEnd(0);
+                }
+
+                break;
+
+            case State.Final:
 
                 break;
 
@@ -206,10 +246,33 @@ public class Surveyor : MonoBehaviour
     bool InRange()
     {
         foreach (PointOfInterest point in pointsOfInterest)
-            if(!point.isScanned && point.currentDistance < scannerRange)
+            if (!point.isScanned && point.IsInRange(submarine.transform.position))
                 return true;
 
         return false;
+    }
+
+    string GetScanString(bool reverse, float t, float speed)
+    {
+        int position = Mathf.FloorToInt(t * speed);
+
+        string scan = string.Empty;
+        if (!reverse)
+        {
+            for (int i = 0; i < scanString.Length; ++i)
+            {
+                scan += scanString[(i + position + scanString.Length) % scanString.Length];
+            }
+        }
+        else
+        {
+            for (int i = scanString.Length - 1; i >= 0; --i)
+            {
+                scan += scanString[(i + position + scanString.Length) % scanString.Length];
+            }
+        }
+
+        return scan;
     }
 
     [System.Serializable]
@@ -218,6 +281,12 @@ public class Surveyor : MonoBehaviour
         public Vector3 position;
         public float currentDistance;
         public float currentHeading;
+        public float scannableRange;
         public bool isScanned;
+
+        public bool IsInRange(Vector3 point)
+        {
+            return Vector3.Distance(position, point) <= scannableRange;
+        }
     }
 }

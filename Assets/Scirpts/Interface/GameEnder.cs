@@ -1,7 +1,7 @@
 
-using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class GameEnder : MonoBehaviour
@@ -47,6 +47,7 @@ public class GameEnder : MonoBehaviour
     float currentDepth;
     int stage;
     float timer;
+    bool finalShake;
 
     [ContextMenu("Test")]
     public void Test()
@@ -73,10 +74,32 @@ public class GameEnder : MonoBehaviour
         soundPlayer.Play(impact);
         soundPlayer.Play(nessieDriveBy);
 
-        alarmLight.Flick(.3f, 2f);
-        cameraShake.Shake(.4f, .2f,1f, true);
+        cameraShake.Shake(.4f, .2f,1f);
         stage++;
 
+    }
+
+    string GetScanString(bool reverse, float t, float speed)
+    {
+        int position = Mathf.FloorToInt(t * speed);
+
+        string scan = string.Empty;
+        if (!reverse)
+        {
+            for (int i = 0; i < scanString.Length; ++i)
+            {
+                scan += scanString[(i + position + scanString.Length) % scanString.Length];
+            }
+        }
+        else
+        {
+            for (int i = scanString.Length - 1; i >= 0; --i)
+            {
+                scan += scanString[(i + position + scanString.Length) % scanString.Length];
+            }
+        }
+
+        return scan;
     }
 
     private void Update()
@@ -103,12 +126,14 @@ public class GameEnder : MonoBehaviour
 
                 timer += Time.deltaTime;
 
-                int position = Mathf.FloorToInt(timer * 10);
-                string scanProgress = "REBOOTING:\n\n";
-                for (int i = 0; i < scanString.Length; ++i)
-                {
-                    scanProgress += scanString[(i + position + scanString.Length) % scanString.Length];
-                }
+
+                string scanProgress = "";
+                scanProgress += GetScanString(false, timer, 10f) + "\n";
+                scanProgress += GetScanString(true, timer, 10f) + "\n";
+                scanProgress += "REBOOTING:\n";
+                scanProgress += GetScanString(false, timer, 10f) + "\n";
+                scanProgress += GetScanString(true, timer, 10f) + "\n";
+
 
                 display.text = scanProgress;
 
@@ -161,10 +186,10 @@ public class GameEnder : MonoBehaviour
                     loop.Play();
                     soundPlayer.Play(impact);
                     soundPlayer.Play(riser);
-                    cameraShake.EndMode();
 
                     alarmLight.Flick(.4f, 15f);
-                    cameraShake.Shake(.1f, .3f, 15f);
+                    cameraShake.Shake(.4f, .2f, 1f);
+                  
 
                     currentDepth = startDepth;
 
@@ -176,6 +201,12 @@ public class GameEnder : MonoBehaviour
             case 5:
 
                 timer += Time.deltaTime;
+
+                if(timer > 1f && !finalShake)
+                {
+                    finalShake = true;
+                    cameraShake.Shake(.1f, .3f, 15f);
+                }
 
                 currentDepth += descentSpeed * Time.deltaTime;
                 float displayDepth = startDepth - currentDepth;
