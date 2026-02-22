@@ -154,6 +154,9 @@ MonoBehaviour:
   thrustControl: 0
   bouyancyControl: 0
   turnControl: 0
+  thrustOverheatThreshold: 0.75
+  heatGainRate: 10
+  m_heatDamageType: {fileID: 11400000, guid: 67249232d0161dd48aefd3bfb1466bb1, type: 2}
   joint: {fileID: 5533282899587891439}
   moveSpeed: 5
   floatSpeed: 2

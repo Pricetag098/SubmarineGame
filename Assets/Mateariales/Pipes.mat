@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Pc
+  m_Name: Pipes
   m_Shader: {fileID: -6465566751694194690, guid: fe46516a594d1724580fd7a0d977c2cd, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -55,17 +55,17 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BaseTiling: 0.7
-    - _DetailSmoothness: 0
-    - _DetailTiling: 0.08
-    - _Metalic: 0
+    - _BaseTiling: 0.21
+    - _DetailSmoothness: 0.1
+    - _DetailTiling: 0.14
+    - _Metalic: 1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Smoothness: 0.5
-    - _Step: 1
-    - _Step_1: 0
+    - _Smoothness: 0.57
+    - _Step: 0.74
+    - _Step_1: 0.91
     m_Colors:
-    - _Color: {r: 1, g: 0.8881757, b: 0.6367924, a: 1}
-    - _DetailColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 0.2830189, g: 0.36732233, b: 0.3773585, a: 1}
+    - _DetailColor: {r: 0.47058824, g: 0.20205735, b: 0.12156863, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

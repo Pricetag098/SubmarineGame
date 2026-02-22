@@ -8,10 +8,27 @@ public class Submarine : MonoBehaviour
     public float collisionDamageThreshold;
     public AnimationCurve damageCurve;
     [Range(-1,1)]public float thrustControl, bouyancyControl, turnControl;
+    [SerializeField] private float thrustOverheatThreshold;
+    [SerializeField] private float heatGainRate;
+    [SerializeField] private DamageType m_heatDamageType;
     [SerializeField] private ConfigurableJoint joint;
 
     [SerializeField] private float moveSpeed, floatSpeed, turnRate;
     [SerializeField] private float driveValue;
+
+    SegmentedHealthbar.Damage heatDamage;
+
+    private void Start()
+    {
+        heatDamage = new SegmentedHealthbar.Damage();
+        heatDamage.Type = m_heatDamageType;
+        heatDamage.Amount = 0;
+        SegmentedHealthbar.Instance.AddDamage(heatDamage);
+    }
+    private void OnDestroy()
+    {
+        SegmentedHealthbar.Instance.ClearDamage(heatDamage);
+    }
 
     private void Update()
     {
@@ -27,6 +44,16 @@ public class Submarine : MonoBehaviour
         joint.zDrive = drive;
 
         joint.slerpDrive = drive;
+
+        if(Mathf.Abs(thrustControl) > thrustOverheatThreshold)
+        {
+            heatDamage.Amount += heatGainRate * Time.deltaTime;
+        }
+        else
+        {
+            heatDamage.Amount -= heatGainRate * Time.deltaTime;
+            heatDamage.Amount = Mathf.Max(0, heatDamage.Amount);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
