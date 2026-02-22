@@ -11,7 +11,7 @@ public class EnemyFish : MonoBehaviour
     [SerializeField] private float damageOnHit;
     [SerializeField] private float damageCooldown;
     [SerializeField] private float damageRange;
-    [SerializeField] private float agroRange;
+    [SerializeField] private float agroRange, dropAgroRange;
 
     private Vector3 startPos;
     private float timeLastAttacked;
@@ -44,35 +44,37 @@ public class EnemyFish : MonoBehaviour
         
         
         var distance = Vector3.Distance(transform.position, targetPoint);
-        if(distance > .1)
+        if(distance > .5)
             transform.forward = targetPoint - transform.position;
 
         switch (state)
         {
             case State.Chasing:
                 targetPoint = submarine.transform.position;
+                distance = Vector3.Distance(transform.position, targetPoint);
                 if (distance < damageRange)
                 {
                     targetPoint = transform.position;
                     if(Time.timeSinceLevelLoad - timeLastAttacked > damageCooldown)
                     {
+                        state = State.Idle;
                         submarine.DealHullDamage(damageOnHit);
                         timeLastAttacked = Time.timeSinceLevelLoad;
                     }
                 }
-                if (distance > agroRange)
+                if (distance > dropAgroRange)
                     state = State.Idle;
                 break;
             case State.Idle:
                 targetPoint = startPos;
-                if(Vector3.Distance(transform.position, submarine.transform.position) < agroRange)
+                if(Vector3.Distance(transform.position, submarine.transform.position) < agroRange && Time.timeSinceLevelLoad - timeLastAttacked > damageCooldown)
                     state = State.Chasing;
                 break;
         }
     }
     private void FixedUpdate()
     {
-        joint.targetVelocity = transform.forward * moveSpeed;
+        joint.targetVelocity = (targetPoint - transform.position).normalized * moveSpeed;
     }
     private void OnDrawGizmosSelected()
     {
@@ -80,6 +82,7 @@ public class EnemyFish : MonoBehaviour
         Gizmos.DrawSphere(targetPoint, 1);
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, agroRange);
+        Gizmos.DrawWireSphere(transform.position, dropAgroRange);
         Gizmos.DrawWireSphere(transform.position, damageRange);
     }
 }

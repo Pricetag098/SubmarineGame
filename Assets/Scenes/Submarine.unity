@@ -2659,6 +2659,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: c544287206a39a046a4cb7ab83f54cf3, type: 3}
+      propertyPath: m_StitchLightmapSeams
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c544287206a39a046a4cb7ab83f54cf3, type: 3}
       propertyPath: m_Name
       value: holo table
@@ -4816,13 +4820,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 915887962539516915, guid: 0f48d29a1b0950d48842be06338d6d8e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 79d9c8849d2caab46a55d857fb82d75f, type: 2}
     - target: {fileID: 2459266696105451857, guid: 0f48d29a1b0950d48842be06338d6d8e, type: 3}
       propertyPath: m_Name
       value: ThermalDisplay
       objectReference: {fileID: 0}
     - target: {fileID: 6043489960927783745, guid: 0f48d29a1b0950d48842be06338d6d8e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.7
+      value: -2.404
       objectReference: {fileID: 0}
     - target: {fileID: 6043489960927783745, guid: 0f48d29a1b0950d48842be06338d6d8e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4830,7 +4838,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6043489960927783745, guid: 0f48d29a1b0950d48842be06338d6d8e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.54
+      value: 0.349
       objectReference: {fileID: 0}
     - target: {fileID: 6043489960927783745, guid: 0f48d29a1b0950d48842be06338d6d8e, type: 3}
       propertyPath: m_LocalRotation.w

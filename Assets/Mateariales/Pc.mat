@@ -57,15 +57,15 @@ Material:
     m_Floats:
     - _BaseTiling: 0.7
     - _DetailSmoothness: 0
-    - _DetailTiling: 0.08
-    - _Metalic: 0
+    - _DetailTiling: 1.04
+    - _Metalic: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Smoothness: 0.5
-    - _Step: 1
-    - _Step_1: 0
+    - _Step: 2
+    - _Step_1: 2
     m_Colors:
-    - _Color: {r: 0.9811321, g: 0.94794, b: 0.8746885, a: 1}
-    - _DetailColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _DetailColor: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

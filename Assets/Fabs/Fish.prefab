@@ -49,16 +49,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyFish
   model: {fileID: 5582690651063541652}
-  moveSpeed: 3
+  moveSpeed: 2.5
   detectionRange: 10
   _rigidbody: {fileID: 3842968192557725594}
   joint: {fileID: 4318260112617322091}
   wiggleRate: 3
   wiggleAngle: 10
   damageOnHit: 20
-  damageCooldown: 2
+  damageCooldown: 5
   damageRange: 5
-  agroRange: 50
+  agroRange: 40
+  dropAgroRange: 60
   state: 0
 --- !u!54 &3842968192557725594
 Rigidbody:
@@ -209,7 +210,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 1.78
-  m_Center: {x: 0, y: 0.29, z: 1.4}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &5400672390721321087
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -220,7 +221,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: e0d2d6005fbf4694a97b8105e8c3d5e6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.27066803
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e0d2d6005fbf4694a97b8105e8c3d5e6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -228,7 +229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e0d2d6005fbf4694a97b8105e8c3d5e6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.353529
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e0d2d6005fbf4694a97b8105e8c3d5e6, type: 3}
       propertyPath: m_LocalRotation.w
