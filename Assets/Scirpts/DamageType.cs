@@ -4,5 +4,5 @@ using UnityEngine;
 public class DamageType : ScriptableObject
 {
     public Sprite icon;
-    public Color color;
+    public Color color, iconColour;
 }

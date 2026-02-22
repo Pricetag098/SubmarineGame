@@ -56,11 +56,16 @@ public class Submarine : MonoBehaviour
         }
     }
 
+    public void DealHullDamage(float amount)
+    {
+        console.DealHullDamage(amount);
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.relativeVelocity.magnitude < collisionDamageThreshold)
             return;
 
-        console.DealHullDamage(damageCurve.Evaluate(collision.relativeVelocity.magnitude - collisionDamageThreshold));
+        DealHullDamage(damageCurve.Evaluate(collision.relativeVelocity.magnitude - collisionDamageThreshold));
     }
 }

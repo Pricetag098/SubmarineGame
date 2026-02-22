@@ -8,7 +8,13 @@ public class EnemyFish : MonoBehaviour
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private ConfigurableJoint joint;
     [SerializeField] private float wiggleRate, wiggleAngle;
+    [SerializeField] private float damageOnHit;
+    [SerializeField] private float damageCooldown;
+    [SerializeField] private float damageRange;
+    [SerializeField] private float agroRange;
 
+    private Vector3 startPos;
+    private float timeLastAttacked;
     private Submarine submarine;
     private Vector3 targetPoint;
     private Quaternion initialRot;
@@ -23,24 +29,57 @@ public class EnemyFish : MonoBehaviour
     private void Awake()
     {
         initialRot = model.localRotation;
+        startPos = transform.position;
     }
 
     private void Update()
     {
         if (!submarine)
+        {
             submarine = FindAnyObjectByType<Submarine>();
+            return;
+        }
+            
         model.localRotation = initialRot * Quaternion.Euler(Vector3.forward * Mathf.Sin(Time.time * (Vector3.Dot(_rigidbody.linearVelocity, transform.forward) / moveSpeed) * Mathf.PI * wiggleRate) *wiggleAngle);
-        transform.forward = targetPoint - transform.position;
+        
+        
+        var distance = Vector3.Distance(transform.position, targetPoint);
+        if(distance > .1)
+            transform.forward = targetPoint - transform.position;
 
         switch (state)
         {
             case State.Chasing:
                 targetPoint = submarine.transform.position;
-                break;  
+                if (distance < damageRange)
+                {
+                    targetPoint = transform.position;
+                    if(Time.timeSinceLevelLoad - timeLastAttacked > damageCooldown)
+                    {
+                        submarine.DealHullDamage(damageOnHit);
+                        timeLastAttacked = Time.timeSinceLevelLoad;
+                    }
+                }
+                if (distance > agroRange)
+                    state = State.Idle;
+                break;
+            case State.Idle:
+                targetPoint = startPos;
+                if(Vector3.Distance(transform.position, submarine.transform.position) < agroRange)
+                    state = State.Chasing;
+                break;
         }
     }
     private void FixedUpdate()
     {
         joint.targetVelocity = transform.forward * moveSpeed;
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(targetPoint, 1);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, agroRange);
+        Gizmos.DrawWireSphere(transform.position, damageRange);
     }
 }
