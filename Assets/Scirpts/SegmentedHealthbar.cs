@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +15,8 @@ public class SegmentedHealthbar : MonoBehaviour
     private List<Damage> damages = new List<Damage>();
     [SerializeField] private DamageSegment damageSegmentPrefab;
     public static SegmentedHealthbar Instance;
+    public Action OnDeath;
+    bool dead = false;
 
     private void Awake()
     {
@@ -41,6 +44,7 @@ public class SegmentedHealthbar : MonoBehaviour
 
     void UpdateDisplay()
     {
+        var totalDamage = 0f;
         for (int i = 0; i < DamageTypes.Count; i++)
         {
             var damageType = DamageTypes[i];
@@ -55,6 +59,12 @@ public class SegmentedHealthbar : MonoBehaviour
             segment.Amount = amount;
             segment.healthbar = this;
             segment.UpdateDisplay();
+            totalDamage += amount;
+        }
+        if (totalDamage > MaxHp&& !dead)
+        {
+            dead = true;
+            OnDeath?.Invoke();
         }
     }
 
