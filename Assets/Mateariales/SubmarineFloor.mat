@@ -56,16 +56,16 @@ Material:
     m_Ints: []
     m_Floats:
     - _BaseTiling: 0.21
-    - _DetailSmoothness: 0.1
+    - _DetailSmoothness: 0.7
     - _DetailTiling: 0.14
     - _Metalic: 1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Smoothness: 0.57
-    - _Step: 0.74
-    - _Step_1: 0.91
+    - _Smoothness: 0.37
+    - _Step: 0.8
+    - _Step_1: 1.01
     m_Colors:
-    - _Color: {r: 0.4245728, g: 0.4413937, b: 0.4433962, a: 1}
+    - _Color: {r: 0.38648096, g: 0.4245283, b: 0.4245283, a: 1}
     - _DetailColor: {r: 0.47058824, g: 0.20205735, b: 0.12156863, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
