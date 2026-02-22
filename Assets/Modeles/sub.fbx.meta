@@ -9,6 +9,16 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: submarine
     second: {fileID: 2100000, guid: 3909a9c330905194fbc2ac83fa99adef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: window
+    second: {fileID: 2100000, guid: 4d71d539864de3041a4e58f8b2852fc5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: window frame
+    second: {fileID: 2100000, guid: 4a3366a15be9c624bb4ce08b035bb133, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
