@@ -320,9 +320,11 @@ MonoBehaviour:
   _shader: {fileID: 7200000, guid: 483c94041c0dae646aa21961eb2f955b, type: 3}
   _camTargetTexture: {fileID: 0}
   _displayTarget: {fileID: 0}
+  _displayObject: {fileID: 0}
+  test2: {fileID: 0}
   _displayHeight: 2048
   _displayWidth: 2048
-  _multipler: 2.5
+  _multipler: 0.1
   _captureTime: 10
 --- !u!20 &628172164257761616
 Camera:
