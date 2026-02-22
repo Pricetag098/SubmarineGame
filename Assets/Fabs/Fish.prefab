@@ -49,17 +49,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyFish
   model: {fileID: 5582690651063541652}
-  moveSpeed: 2.5
+  moveSpeed: 2
   detectionRange: 10
   _rigidbody: {fileID: 3842968192557725594}
   joint: {fileID: 4318260112617322091}
   wiggleRate: 3
   wiggleAngle: 10
   damageOnHit: 20
-  damageCooldown: 5
+  damageCooldown: 8
   damageRange: 5
-  agroRange: 40
-  dropAgroRange: 60
+  agroRange: 30
+  dropAgroRange: 40
   state: 0
 --- !u!54 &3842968192557725594
 Rigidbody:
