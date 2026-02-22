@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01024a253d33ec640bf5ba343b1b07f6, type: 3}
-  m_Name: Heat
+  m_Name: Radiation
   m_EditorClassIdentifier: Assembly-CSharp::DamageType
-  icon: {fileID: 39568148, guid: 531af9131fa256d479a50d7afe05d0b1, type: 3}
-  color: {r: 0.78431374, g: 0.26274508, b: 0.26274508, a: 1}
-  iconColour: {r: 0.355, g: 0.11892499, b: 0.11892499, a: 1}
+  icon: {fileID: 668196513, guid: 531af9131fa256d479a50d7afe05d0b1, type: 3}
+  color: {r: 0.57174546, g: 0.23985404, b: 0.6603774, a: 1}
+  iconColour: {r: 0.8527126, g: 0.10346207, b: 0.8773585, a: 1}

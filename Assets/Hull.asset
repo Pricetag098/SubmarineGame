@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01024a253d33ec640bf5ba343b1b07f6, type: 3}
   m_Name: Hull
   m_EditorClassIdentifier: Assembly-CSharp::DamageType
-  icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  icon: {fileID: 1686574282, guid: 531af9131fa256d479a50d7afe05d0b1, type: 3}
   color: {r: 0.7830189, g: 0.5358993, b: 0.2622375, a: 1}
+  iconColour: {r: 0.32599998, g: 0.22330998, b: 0.109209985, a: 1}

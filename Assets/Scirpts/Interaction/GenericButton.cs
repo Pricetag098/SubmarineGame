@@ -6,7 +6,7 @@ public class GenericButton : MonoBehaviour, IInteractable
     [SerializeField] string displayText;
     [SerializeField] UnityEvent onInteract;
 
-    public GameObject GameObject => gameObject;
+    public GameObject GameObject => gameObject != null? gameObject : null;
 
     public void Focus(Interactor interactor)
     {
