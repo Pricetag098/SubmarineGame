@@ -26,6 +26,11 @@ public class Meno : MonoBehaviour
 
         Application.Quit();
     }
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
 
     private void Update()
     {

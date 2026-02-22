@@ -55,6 +55,14 @@ public class GameEnder : MonoBehaviour
     {
         BeginEnd(0);
     }
+    private void Start()
+    {
+        SegmentedHealthbar.Instance.OnDeath += EndGame;
+    }
+    private void OnDestroy()
+    {
+        SegmentedHealthbar.Instance.OnDeath -= EndGame;
+    }
 
     public void BeginEnd(float subCurrentDepth)
     {
