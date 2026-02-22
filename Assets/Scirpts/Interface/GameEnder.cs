@@ -251,7 +251,7 @@ public class GameEnder : MonoBehaviour
 
                 timer += Time.deltaTime;
 
-                if (timer > 2f)
+                if (timer > 3f)
                     SceneManager.LoadScene("Menu");
 
                 break;
