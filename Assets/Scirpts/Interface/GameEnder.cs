@@ -103,6 +103,13 @@ public class GameEnder : MonoBehaviour
         return scan;
     }
 
+    public void EndGame()
+    {
+        blackout.gameObject.SetActive(true);
+        soundPlayer.Play(impact);
+        stage = 6;
+        timer = 0;
+    }
     private void Update()
     {
         if (stage == 0)
