@@ -60,6 +60,7 @@ public class EnemyFish : MonoBehaviour
                         state = State.Idle;
                         submarine.DealHullDamage(damageOnHit);
                         timeLastAttacked = Time.timeSinceLevelLoad;
+                        Debug.Log("Hit");
                     }
                 }
                 if (distance > dropAgroRange)

@@ -56,10 +56,10 @@ MonoBehaviour:
   wiggleRate: 3
   wiggleAngle: 10
   damageOnHit: 20
-  damageCooldown: 8
+  damageCooldown: 10
   damageRange: 5
   agroRange: 30
-  dropAgroRange: 40
+  dropAgroRange: 35
   state: 0
 --- !u!54 &3842968192557725594
 Rigidbody:
