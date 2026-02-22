@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameEnder : MonoBehaviour
@@ -228,6 +229,15 @@ public class GameEnder : MonoBehaviour
 
                     stage++;
                 }
+
+                break;
+
+            case 6:
+
+                timer += Time.deltaTime;
+
+                if (timer > 2f)
+                    SceneManager.LoadScene("Menu");
 
                 break;
         }
