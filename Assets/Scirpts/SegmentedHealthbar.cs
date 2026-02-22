@@ -45,6 +45,8 @@ public class SegmentedHealthbar : MonoBehaviour
     void UpdateDisplay()
     {
         var totalDamage = 0f;
+        Comparison<DamageType> value = (DamageType a, DamageType b) => { return a.priority.CompareTo(b.priority); };
+        DamageTypes.Sort(value);
         for (int i = 0; i < DamageTypes.Count; i++)
         {
             var damageType = DamageTypes[i];

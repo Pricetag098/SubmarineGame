@@ -5,4 +5,5 @@ public class DamageType : ScriptableObject
 {
     public Sprite icon;
     public Color color, iconColour;
+    public int priority;
 }
