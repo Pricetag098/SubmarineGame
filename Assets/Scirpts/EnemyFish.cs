@@ -13,6 +13,8 @@ public class EnemyFish : MonoBehaviour
     [SerializeField] private float damageRange;
     [SerializeField] private float agroRange, dropAgroRange;
 
+    [SerializeField] private SoundPlayer soundPlayer;
+
     private Vector3 startPos;
     private float timeLastAttacked;
     private Submarine submarine;
@@ -68,8 +70,11 @@ public class EnemyFish : MonoBehaviour
                 break;
             case State.Idle:
                 targetPoint = startPos;
-                if(Vector3.Distance(transform.position, submarine.transform.position) < agroRange && Time.timeSinceLevelLoad - timeLastAttacked > damageCooldown)
+                if (Vector3.Distance(transform.position, submarine.transform.position) < agroRange && Time.timeSinceLevelLoad - timeLastAttacked > damageCooldown)
+                {
                     state = State.Chasing;
+                    soundPlayer.Play();
+                }
                 break;
         }
     }
