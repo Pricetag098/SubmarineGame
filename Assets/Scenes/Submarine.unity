@@ -2672,6 +2672,14 @@ PrefabInstance:
       propertyPath: targetControl
       value: 
       objectReference: {fileID: 3886758843630851418}
+    - target: {fileID: 897009044048541703, guid: 9dd9eb6b28d38874eb3583ca0f50da0f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.004
+      objectReference: {fileID: 0}
+    - target: {fileID: 897009044048541703, guid: 9dd9eb6b28d38874eb3583ca0f50da0f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.055
+      objectReference: {fileID: 0}
     - target: {fileID: 1512812485311313920, guid: 9dd9eb6b28d38874eb3583ca0f50da0f, type: 3}
       propertyPath: m_Color.b
       value: 0.05842829
@@ -7198,6 +7206,14 @@ PrefabInstance:
       propertyPath: targetControl
       value: 
       objectReference: {fileID: 1195436801}
+    - target: {fileID: 897009044048541703, guid: 9dd9eb6b28d38874eb3583ca0f50da0f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.004
+      objectReference: {fileID: 0}
+    - target: {fileID: 897009044048541703, guid: 9dd9eb6b28d38874eb3583ca0f50da0f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.054
+      objectReference: {fileID: 0}
     - target: {fileID: 5563011251886167008, guid: 9dd9eb6b28d38874eb3583ca0f50da0f, type: 3}
       propertyPath: m_Name
       value: ControlReadout (Thrust)
