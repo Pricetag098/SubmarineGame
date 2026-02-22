@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class Interactor : MonoBehaviour
 {
     public System.Action<IInteractable> onChangedFocus;
+    public InputActionReference Input => interactInput;
 
     [SerializeField] InteractionDisplay display;
     [SerializeField] float interactionRange;
@@ -12,8 +13,8 @@ public class Interactor : MonoBehaviour
     [SerializeField] LayerMask interactionLayer;
     [SerializeField] InputActionReference interactInput;
 
-
     IInteractable currentFocus;
+
     public Vector3 GetHead()
     {
         return playerHead.position;
@@ -39,7 +40,10 @@ public class Interactor : MonoBehaviour
         if (currentFocus != null)
         {
             if (Vector3.Distance(playerHead.position, currentFocus.GameObject.transform.position) > interactionRange)
+            {
                 SetFocus(null);
+                return;
+            }
 
             if (interactInput.action.WasPressedThisFrame())
             {

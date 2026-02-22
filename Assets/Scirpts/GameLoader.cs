@@ -50,5 +50,6 @@ public class GameLoader : MonoBehaviour
 
         var console = FindAnyObjectByType<PlayerConsole>();
         console.submarine = sub;
+        sub.console = console;
     }
 }
