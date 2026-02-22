@@ -10,6 +10,8 @@ public class DamageSource : MonoBehaviour, IInteractable
     public GameObject GameObject => gameObject;
 
     [SerializeField] AudioClip repairSound;
+    [SerializeField] SoundPlayer clank;
+    [SerializeField] SoundPlayer splash;
 
     private void Start()
     {
@@ -17,6 +19,8 @@ public class DamageSource : MonoBehaviour, IInteractable
         damage.Amount = Amount;
         damage.Type = DamageType;
         SegmentedHealthbar.Instance.AddDamage(damage);
+        clank.Play();
+        splash.Play();
     }
 
     private void Update()

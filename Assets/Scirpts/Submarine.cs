@@ -65,7 +65,8 @@ public class Submarine : MonoBehaviour
     {
         if (collision.relativeVelocity.magnitude < collisionDamageThreshold)
             return;
-
+        if (collision.collider.TryGetComponent(out EnemyFish _))
+            return;
         DealHullDamage(damageCurve.Evaluate(collision.relativeVelocity.magnitude - collisionDamageThreshold));
     }
 }
