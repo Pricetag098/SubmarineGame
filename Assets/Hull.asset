@@ -15,3 +15,4 @@ MonoBehaviour:
   icon: {fileID: 1686574282, guid: 531af9131fa256d479a50d7afe05d0b1, type: 3}
   color: {r: 0.7830189, g: 0.5358993, b: 0.2622375, a: 1}
   iconColour: {r: 0.32599998, g: 0.22330998, b: 0.109209985, a: 1}
+  priority: -1

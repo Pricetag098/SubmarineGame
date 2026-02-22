@@ -1,12 +1,12 @@
 using UnityEngine;
-//using UnityEngine.UI;
+using UnityEngine.UI;
 
 public class ThermalRenderer : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
     [SerializeField] private ComputeShader _shader;
     [SerializeField] private RenderTexture _camTargetTexture, _displayTarget;
-    //[SerializeField] private RawImage _displayObject;
+    [SerializeField] private RawImage _displayObject, test2;
     [SerializeField] private int _displayHeight = 2048, _displayWidth = 2048;
     [SerializeField] private float _multipler = 1;
     [SerializeField] private float _captureTime;
@@ -19,13 +19,17 @@ public class ThermalRenderer : MonoBehaviour
 
     void Awake()
     {
-        _camTargetTexture = new(_displayHeight, _displayWidth, 16);
+        _camTargetTexture = new(_displayHeight, _displayWidth, 16, UnityEngine.Experimental.Rendering.DefaultFormat.HDR);
+        _camTargetTexture.format = RenderTextureFormat.ARGBFloat;
         _camTargetTexture.enableRandomWrite = true;
-        _displayTarget = new(_displayHeight, _displayWidth, 16);
+        _displayTarget = new(_displayHeight, _displayWidth, 16, UnityEngine.Experimental.Rendering.DefaultFormat.HDR);
+        _displayTarget.format = RenderTextureFormat.ARGBFloat;
         _displayTarget.enableRandomWrite = true;
         _camera.targetTexture = _camTargetTexture;
-        //_displayObject.texture = _displayTarget;
-        
+        if(_displayObject)
+            _displayObject.texture = _displayTarget;
+        if (test2)
+            test2.texture = _camTargetTexture;
     }
 
     private void Start()

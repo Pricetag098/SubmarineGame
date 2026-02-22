@@ -7,7 +7,10 @@ float Multiplier;
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
-    Result[id.xy] += Caputure[id.xy] * Multiplier;
+    float4 input = Result.Load(id.xyz);
+    float4 result = input + Caputure[id.xy] * Multiplier;
+    result.a = 1;
+    Result[id.xy] = result;
 }
 
 #pragma kernel Clear

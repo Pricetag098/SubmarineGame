@@ -372,6 +372,14 @@ PrefabInstance:
       propertyPath: damageRange
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 7345879095235228413, guid: 9d62accf48020ec49b4d0f7f744f8a3f, type: 3}
+      propertyPath: fishRotationAxis.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7345879095235228413, guid: 9d62accf48020ec49b4d0f7f744f8a3f, type: 3}
+      propertyPath: fishRotationAxis.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6992969316565560071, guid: 9d62accf48020ec49b4d0f7f744f8a3f, type: 3}
     m_RemovedGameObjects:

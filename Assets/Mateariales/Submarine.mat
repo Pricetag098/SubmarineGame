@@ -57,7 +57,7 @@ Material:
     m_Floats:
     - _BaseTiling: 0.36
     - _DetailSmoothness: 0.1
-    - _DetailTiling: -0.33
+    - _DetailTiling: -0.09
     - _Metalic: 1
     - _QueueControl: 0
     - _QueueOffset: 0
