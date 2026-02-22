@@ -7,6 +7,8 @@ public class Interactor : MonoBehaviour
     public System.Action<IInteractable> onChangedFocus;
     public InputActionReference Input => interactInput;
 
+    public SoundPlayer interactorAudio;
+
     [SerializeField] InteractionDisplay display;
     [SerializeField] float interactionRange;
     [SerializeField] Transform playerHead;

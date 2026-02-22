@@ -1,11 +1,16 @@
 using UnityEngine;
 
-public class DamageSource : MonoBehaviour
+public class DamageSource : MonoBehaviour, IInteractable
 {
     public DamageType DamageType;
     public float Amount;
 
     private SegmentedHealthbar.Damage damage;
+
+    public GameObject GameObject => gameObject;
+
+    [SerializeField] AudioClip repairSound;
+
     private void Start()
     {
         damage = new SegmentedHealthbar.Damage();
@@ -36,5 +41,31 @@ public class DamageSource : MonoBehaviour
     private void OnDestroy()
     {
         SegmentedHealthbar.Instance.ClearDamage(damage);
+    }
+
+    public string GetInteractionText()
+    {
+        return "(E) FIX!";
+    }
+
+    public void Focus(Interactor interactor)
+    {
+      
+    }
+
+    public void Unfocus(Interactor interactor)
+    {
+    
+    }
+
+    public void Interact(Interactor interactor)
+    {
+        Repair(10);
+        interactor.interactorAudio.Play(repairSound);
+    }
+
+    public bool RequestDefocus(Interactor interactor, IInteractable newTarget)
+    {
+        return true;
     }
 }
