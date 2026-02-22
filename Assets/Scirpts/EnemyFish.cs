@@ -12,8 +12,9 @@ public class EnemyFish : MonoBehaviour
     [SerializeField] private float damageCooldown;
     [SerializeField] private float damageRange;
     [SerializeField] private float agroRange, dropAgroRange;
-
+    [SerializeField] private Vector3 fishRotationAxis = Vector3.forward;
     [SerializeField] private SoundPlayer soundPlayer;
+    [SerializeField] private float TurnSpeed = 2;
 
     private Vector3 startPos;
     private float timeLastAttacked;
@@ -42,12 +43,13 @@ public class EnemyFish : MonoBehaviour
             return;
         }
             
-        model.localRotation = initialRot * Quaternion.Euler(Vector3.forward * Mathf.Sin(Time.time * (Vector3.Dot(_rigidbody.linearVelocity, transform.forward) / moveSpeed) * Mathf.PI * wiggleRate) *wiggleAngle);
+        model.localRotation = initialRot * Quaternion.Euler(fishRotationAxis * Mathf.Sin(Time.time * (Vector3.Dot(_rigidbody.linearVelocity, transform.forward) / moveSpeed) * Mathf.PI * wiggleRate) *wiggleAngle);
         
         
         var distance = Vector3.Distance(transform.position, targetPoint);
-        if(distance > .5)
-            transform.forward = targetPoint - transform.position;
+        if (distance > 1)
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(targetPoint - transform.position), Time.deltaTime * TurnSpeed);
+            
 
         switch (state)
         {

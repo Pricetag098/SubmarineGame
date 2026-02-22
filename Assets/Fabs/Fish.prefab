@@ -62,7 +62,9 @@ MonoBehaviour:
   damageRange: 5
   agroRange: 30
   dropAgroRange: 35
+  fishRotationAxis: {x: 0, y: 0, z: 1}
   soundPlayer: {fileID: 7611533072853818726}
+  TurnSpeed: 5
   state: 0
 --- !u!54 &3842968192557725594
 Rigidbody:
