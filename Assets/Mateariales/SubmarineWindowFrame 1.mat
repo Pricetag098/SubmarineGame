@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PANNEL FACE
+  m_Name: SubmarineWindowFrame 1
   m_Shader: {fileID: -6465566751694194690, guid: fe46516a594d1724580fd7a0d977c2cd, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -65,7 +65,7 @@ Material:
     - _Step: 0.74
     - _Step_1: 0.91
     m_Colors:
-    - _Color: {r: 0.16037738, g: 0.14751694, b: 0.14751694, a: 1}
-    - _DetailColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 0.34269315, g: 0.4664045, b: 0.4811321, a: 1}
+    - _DetailColor: {r: 0.47058824, g: 0.20205735, b: 0.12156863, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
