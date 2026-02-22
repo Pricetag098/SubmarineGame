@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4348626283834456138}
   - component: {fileID: 2933310007693794544}
-  - component: {fileID: 6297450208609654871}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -30,8 +29,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5924703742085635417}
+  m_Children: []
   m_Father: {fileID: 9212675798671550111}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2933310007693794544
@@ -55,26 +53,6 @@ MonoBehaviour:
   _horizontalSweeps: 25
   _verticalSweeps: 25
   _maxPoints: 15000
---- !u!114 &6297450208609654871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2005210655210169953}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6812cfd53df3ac64e9b5329440b87a93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ThermalRenderer
-  _camera: {fileID: 628172164257761616}
-  _shader: {fileID: 7200000, guid: 483c94041c0dae646aa21961eb2f955b, type: 3}
-  _camTargetTexture: {fileID: 0}
-  _displayTarget: {fileID: 0}
-  _displayHeight: 2048
-  _displayWidth: 2048
-  _multipler: 2.5
-  _captureTime: 10
 --- !u!1 &4798023485776106145
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,6 +86,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1752229234236222567}
+  - {fileID: 5924703742085635417}
   - {fileID: 4348626283834456138}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -124,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Submarine
   scanner: {fileID: 2933310007693794544}
-  thermalCamera: {fileID: 6297450208609654871}
+  thermalCamera: {fileID: 4178723110197671622}
   console: {fileID: 0}
   collisionDamageThreshold: 1
   damageCurve:
@@ -300,6 +279,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5924703742085635417}
+  - component: {fileID: 4178723110197671622}
   - component: {fileID: 628172164257761616}
   - component: {fileID: 5140642213716098728}
   m_Layer: 0
@@ -317,13 +297,33 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8356483668326099788}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1.98}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4348626283834456138}
+  m_Father: {fileID: 9212675798671550111}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4178723110197671622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8356483668326099788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6812cfd53df3ac64e9b5329440b87a93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ThermalRenderer
+  _camera: {fileID: 628172164257761616}
+  _shader: {fileID: 7200000, guid: 483c94041c0dae646aa21961eb2f955b, type: 3}
+  _camTargetTexture: {fileID: 0}
+  _displayTarget: {fileID: 0}
+  _displayHeight: 2048
+  _displayWidth: 2048
+  _multipler: 2.5
+  _captureTime: 10
 --- !u!20 &628172164257761616
 Camera:
   m_ObjectHideFlags: 0
