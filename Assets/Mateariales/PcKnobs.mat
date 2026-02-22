@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Pc
+  m_Name: PcKnobs
   m_Shader: {fileID: -6465566751694194690, guid: fe46516a594d1724580fd7a0d977c2cd, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -65,7 +65,7 @@ Material:
     - _Step: 1
     - _Step_1: 0
     m_Colors:
-    - _Color: {r: 0.9811321, g: 0.94794, b: 0.8746885, a: 1}
+    - _Color: {r: 0.37604395, g: 0.6320754, b: 0.33094516, a: 1}
     - _DetailColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

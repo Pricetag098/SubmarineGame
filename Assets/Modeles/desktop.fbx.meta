@@ -3,7 +3,27 @@ guid: 929cbc63205acf94e958636ff42eeb97
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: desktop
+    second: {fileID: 2100000, guid: 79d9c8849d2caab46a55d857fb82d75f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: desktop air thing
+    second: {fileID: 2100000, guid: bbd4c5cb79908a74c8b6d02f01cc2cc6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: desktop knob thing
+    second: {fileID: 2100000, guid: 756be1656e9682040a1419c20ae9ca2f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: desktop sidey thing
+    second: {fileID: 2100000, guid: 009d55161d1d64e469a74bb49c18f863, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
