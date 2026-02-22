@@ -55,6 +55,10 @@ MonoBehaviour:
   joint: {fileID: 4318260112617322091}
   wiggleRate: 3
   wiggleAngle: 10
+  damageOnHit: 20
+  damageCooldown: 2
+  damageRange: 5
+  agroRange: 50
   state: 0
 --- !u!54 &3842968192557725594
 Rigidbody:

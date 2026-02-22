@@ -17,7 +17,7 @@ public class DamageSegment : MonoBehaviour
         }
         gameObject.SetActive(true);
         DisplayElement.sprite = Type.icon;
-        DisplayElement.color = Type.color;
+        DisplayElement.color = Type.iconColour;
         DamageBar.color = Type.color;
         var rectTransform = DamageBar.rectTransform;
         var width = (rectTransform.parent as RectTransform).rect.width * (Amount / healthbar.MaxHp);
